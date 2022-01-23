@@ -1,0 +1,136 @@
+{
+    "name": "InputController",
+    "maps": [
+        {
+            "name": "Move",
+            "id": "80aa9c46-c189-4e42-8560-ea704eeee1bb",
+            "actions": [
+                {
+                    "name": "Run",
+                    "type": "Button",
+                    "id": "69338294-bbd2-411b-a9c3-8b2d8bc8990e",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Walking",
+                    "type": "Value",
+                    "id": "82a3a9bc-3f24-4ccc-88a3-b20056b1776c",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Lateral L",
+                    "type": "Value",
+                    "id": "29c65f25-4616-4256-b90e-a66ef6076b8f",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Lateral R",
+                    "type": "Value",
+                    "id": "8c5fb20e-80a2-4342-9900-1c860f3fab5c",
+                    "expectedControlType": "Axis",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Saltar",
+                    "type": "Button",
+                    "id": "5bed8e25-cdb7-4abb-bce5-1af4eea84ddc",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "06af6572-afa8-403e-995d-3dbaa57fa8d8",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Run",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "f5dc7e56-def5-4a0f-9e0e-8f6b8ce57b64",
+                    "path": "<Gamepad>/leftStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Walking",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "66f0b842-c630-4dc2-bc5f-a99fa22dc05c",
+                    "path": "<Gamepad>/leftTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Lateral L",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ee2f464d-ccda-44d4-bf0c-d6688fcc664b",
+                    "path": "<Gamepad>/rightTrigger",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Lateral R",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "5463d172-85ed-4dcc-be9d-dd117523d7c1",
+                    "path": "<Gamepad>/buttonWest",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Saltar",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Camera",
+            "id": "8fd8caa2-96c8-4c80-aa29-a88ea294da8c",
+            "actions": [
+                {
+                    "name": "Pivot",
+                    "type": "Value",
+                    "id": "8429692c-b5c5-47a9-9813-3ce66501453c",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "6b3fc018-5bf0-4b7f-b087-1aaa25a07506",
+                    "path": "<Gamepad>/rightStick",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Pivot",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
