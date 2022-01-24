@@ -44,6 +44,22 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Apuntar",
+                    "type": "Button",
+                    "id": "5fe0fdcd-60f3-48d0-869f-081eb9ca3be7",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Disparar",
+                    "type": "Button",
+                    "id": "ad625541-5f3c-4673-ad61-e57212525c6d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -99,6 +115,28 @@
                     "processors": "",
                     "groups": "",
                     "action": "Saltar",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0dbad02c-4ccf-4b4a-a3f4-6354ea24421b",
+                    "path": "<Gamepad>/rightShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Apuntar",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3a971dc9-c38d-41ed-81a5-2413e7046a08",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Disparar",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

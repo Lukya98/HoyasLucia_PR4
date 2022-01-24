@@ -19,6 +19,13 @@ public class InputMove : MonoBehaviour
     float triggerL;
     float triggerR;
 
+    // RB Apuntar
+    bool rbutton;
+    [SerializeField] GameObject pistola;
+
+    // Boton disparar A
+    bool abutton;
+
     //cc vars
     float frontspeed;
     float latspeed;
@@ -27,10 +34,18 @@ public class InputMove : MonoBehaviour
     float girospeed = 1.5f;
     Vector3 vdirmov;
     
-    
-
     //joystick L var
     Vector2 joystickL;
+
+    //Camaras
+    [SerializeField] GameObject freecam;
+    [SerializeField] GameObject apuntadoCam;
+
+    //tempori
+    float tiempo;
+
+    //bala
+    [SerializeField] GameObject bala;
 
     //Se ejecuta antes del start
     private void Awake()
@@ -61,7 +76,13 @@ public class InputMove : MonoBehaviour
         inputController.Move.Saltar.performed += ctx => xbutton = true;
         inputController.Move.Saltar.canceled += ctx => xbutton = false;
 
+        //Apuntar
+        inputController.Move.Apuntar.performed += ctx => rbutton = true;
+        inputController.Move.Apuntar.canceled += ctx => rbutton = false;
 
+        //Disparar
+        inputController.Move.Disparar.performed += ctx => abutton = true;
+        inputController.Move.Disparar.canceled += ctx => abutton = false;
 
 
     }
@@ -129,7 +150,29 @@ public class InputMove : MonoBehaviour
         // animator andar
 
         animator.SetFloat("Walk", joystickL.y);
+        //animator pistola
+        if (rbutton)
+        {
+            animator.SetBool("Apuntar", true);
+        }
+        else
+        {
+            animator.SetBool("Apuntar", false);
+        }
 
+        //Cambiar camara a apuntar + pistola
+        if (rbutton)
+        {
+            freecam.SetActive(false);
+            apuntadoCam.SetActive(true);
+            pistola.SetActive(true);
+        }
+        else
+        {
+            freecam.SetActive(true);
+            apuntadoCam.SetActive(false);
+            pistola.SetActive(false);
+        }
 
 
 
@@ -140,13 +183,11 @@ public class InputMove : MonoBehaviour
         dirmov = transform.TransformDirection(Vector3.forward);
         latmov = transform.TransformDirection(Vector3.right);
         */
+        //movimientos frontal y lateral
+        latspeed = 2f;
+
         vdirmov = transform.TransformDirection(new Vector3 (latspeed*strafe*-1f, 0f, frontspeed*joystickL.y));
         //Correr o andar
-        cc.SimpleMove(vdirmov);
-        
-        latspeed = 2f;
-        
-
         if (running == true && joystickL.y > 0.1f)
         {
             frontspeed = 8f;
@@ -156,7 +197,22 @@ public class InputMove : MonoBehaviour
             frontspeed = 3f;
         }
 
-      
+        //temporización guardar arma antes de empezar a andar
+        if (rbutton == false && tiempo <= 0f)
+        {
+            cc.SimpleMove(vdirmov);
+            tiempo = 0f;
+        }
+        if (rbutton == true)
+        {
+            tiempo = 1f;
+        }
+        if (rbutton == false && tiempo > 0f)
+        {
+            tiempo = tiempo - (1f * Time.deltaTime);
+        }
+
+
         //Giro
         transform.Rotate(new Vector3(0f, joystickL.x * girospeed, 0f));
 
@@ -169,10 +225,17 @@ public class InputMove : MonoBehaviour
         {
             girospeed = 0.0f;
         }
-       //saltar
-       if(xbutton == true)
+        //saltar
+        /*if(xbutton == true)
+         {
+
+         }*/
+
+
+        //diparar bala
+      if(rbutton && abutton)
         {
-            
+            Instantiate(bala);
         }
        
 

@@ -57,6 +57,22 @@ public class @InputController : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Apuntar"",
+                    ""type"": ""Button"",
+                    ""id"": ""5fe0fdcd-60f3-48d0-869f-081eb9ca3be7"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Disparar"",
+                    ""type"": ""Button"",
+                    ""id"": ""ad625541-5f3c-4673-ad61-e57212525c6d"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -114,6 +130,28 @@ public class @InputController : IInputActionCollection, IDisposable
                     ""action"": ""Saltar"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0dbad02c-4ccf-4b4a-a3f4-6354ea24421b"",
+                    ""path"": ""<Gamepad>/rightShoulder"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Apuntar"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3a971dc9-c38d-41ed-81a5-2413e7046a08"",
+                    ""path"": ""<Gamepad>/buttonSouth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Disparar"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -154,6 +192,8 @@ public class @InputController : IInputActionCollection, IDisposable
         m_Move_LateralL = m_Move.FindAction("Lateral L", throwIfNotFound: true);
         m_Move_LateralR = m_Move.FindAction("Lateral R", throwIfNotFound: true);
         m_Move_Saltar = m_Move.FindAction("Saltar", throwIfNotFound: true);
+        m_Move_Apuntar = m_Move.FindAction("Apuntar", throwIfNotFound: true);
+        m_Move_Disparar = m_Move.FindAction("Disparar", throwIfNotFound: true);
         // Camera
         m_Camera = asset.FindActionMap("Camera", throwIfNotFound: true);
         m_Camera_Pivot = m_Camera.FindAction("Pivot", throwIfNotFound: true);
@@ -211,6 +251,8 @@ public class @InputController : IInputActionCollection, IDisposable
     private readonly InputAction m_Move_LateralL;
     private readonly InputAction m_Move_LateralR;
     private readonly InputAction m_Move_Saltar;
+    private readonly InputAction m_Move_Apuntar;
+    private readonly InputAction m_Move_Disparar;
     public struct MoveActions
     {
         private @InputController m_Wrapper;
@@ -220,6 +262,8 @@ public class @InputController : IInputActionCollection, IDisposable
         public InputAction @LateralL => m_Wrapper.m_Move_LateralL;
         public InputAction @LateralR => m_Wrapper.m_Move_LateralR;
         public InputAction @Saltar => m_Wrapper.m_Move_Saltar;
+        public InputAction @Apuntar => m_Wrapper.m_Move_Apuntar;
+        public InputAction @Disparar => m_Wrapper.m_Move_Disparar;
         public InputActionMap Get() { return m_Wrapper.m_Move; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -244,6 +288,12 @@ public class @InputController : IInputActionCollection, IDisposable
                 @Saltar.started -= m_Wrapper.m_MoveActionsCallbackInterface.OnSaltar;
                 @Saltar.performed -= m_Wrapper.m_MoveActionsCallbackInterface.OnSaltar;
                 @Saltar.canceled -= m_Wrapper.m_MoveActionsCallbackInterface.OnSaltar;
+                @Apuntar.started -= m_Wrapper.m_MoveActionsCallbackInterface.OnApuntar;
+                @Apuntar.performed -= m_Wrapper.m_MoveActionsCallbackInterface.OnApuntar;
+                @Apuntar.canceled -= m_Wrapper.m_MoveActionsCallbackInterface.OnApuntar;
+                @Disparar.started -= m_Wrapper.m_MoveActionsCallbackInterface.OnDisparar;
+                @Disparar.performed -= m_Wrapper.m_MoveActionsCallbackInterface.OnDisparar;
+                @Disparar.canceled -= m_Wrapper.m_MoveActionsCallbackInterface.OnDisparar;
             }
             m_Wrapper.m_MoveActionsCallbackInterface = instance;
             if (instance != null)
@@ -263,6 +313,12 @@ public class @InputController : IInputActionCollection, IDisposable
                 @Saltar.started += instance.OnSaltar;
                 @Saltar.performed += instance.OnSaltar;
                 @Saltar.canceled += instance.OnSaltar;
+                @Apuntar.started += instance.OnApuntar;
+                @Apuntar.performed += instance.OnApuntar;
+                @Apuntar.canceled += instance.OnApuntar;
+                @Disparar.started += instance.OnDisparar;
+                @Disparar.performed += instance.OnDisparar;
+                @Disparar.canceled += instance.OnDisparar;
             }
         }
     }
@@ -307,6 +363,8 @@ public class @InputController : IInputActionCollection, IDisposable
         void OnLateralL(InputAction.CallbackContext context);
         void OnLateralR(InputAction.CallbackContext context);
         void OnSaltar(InputAction.CallbackContext context);
+        void OnApuntar(InputAction.CallbackContext context);
+        void OnDisparar(InputAction.CallbackContext context);
     }
     public interface ICameraActions
     {
