@@ -31,7 +31,7 @@ public class InputMove : MonoBehaviour
     float latspeed;
     /*Vector3 dirmov;
     Vector3 latmov;*/
-    float girospeed = 1.5f;
+    float girospeed = 0.5f;
     Vector3 vdirmov;
     
     //joystick L var
@@ -183,6 +183,8 @@ public class InputMove : MonoBehaviour
         dirmov = transform.TransformDirection(Vector3.forward);
         latmov = transform.TransformDirection(Vector3.right);
         */
+
+
         //movimientos frontal y lateral
         latspeed = 2f;
 
@@ -217,7 +219,8 @@ public class InputMove : MonoBehaviour
         transform.Rotate(new Vector3(0f, joystickL.x * girospeed, 0f));
 
         //umbral giro
-       if(joystickL.x >0.35f || joystickL.x <-0.35f)
+        // ADVERTENCIA: Si el joysick es malo (poco sensible) los umbrales solo molestaran en cambio si es muy sensible los umbrales ayudaran.
+       if(joystickL.x >0.2f || joystickL.x <-0.2f)
         {
             girospeed = 1.5f;
         }
